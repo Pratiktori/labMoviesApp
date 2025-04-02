@@ -23,10 +23,12 @@ export interface BaseMovieProps {
 
   export interface MovieDetailsProps extends BaseMovieProps {
     genres: {
-      id: number;
-      name: string;
+        id: number;
+        name: string;
     }[];
-  }
+    production_countries: { name: string }[];
+}
+
 
   export interface MovieImage {
     file_path: string;
