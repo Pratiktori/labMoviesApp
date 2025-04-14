@@ -6,7 +6,7 @@ import MovieFilterUI, { titleFilter, genreFilter } from "../components/movieFilt
 import { BaseMovieProps, DiscoverMovies } from "../types/interfaces";
 import { useQuery } from "react-query";
 import Spinner from "../components/spinner";
-import AddToMustWatchIcon from "../components/cardIcons/addToMustWatchIcon";  // <-- Import new icon
+import AddToMustWatchIcon from "../components/cardIcons/addToMustWatchIcon"; // Your custom icon component
 
 const titleFiltering = {
   name: "title",
@@ -20,9 +20,14 @@ const genreFiltering = {
 };
 
 const UpcomingMoviesPage: React.FC = () => {
+  // Use React Query to fetch upcoming movies with caching
   const { data, error, isLoading, isError } = useQuery<DiscoverMovies, Error>(
-    "upcoming",
-    getUpcomingMovies
+    "upcomingMovies", // Unique query key for caching
+    getUpcomingMovies,
+    {
+      staleTime: 1000 * 60 * 5, // 5 minutes cache freshness
+      cacheTime: 1000 * 60 * 10, // 10 minutes cache retention
+    }
   );
 
   const { filterValues, setFilterValues, filterFunction } = useFiltering([
@@ -55,7 +60,7 @@ const UpcomingMoviesPage: React.FC = () => {
       <PageTemplate
         title="Upcoming Movies"
         movies={displayedMovies}
-        action={(movie: BaseMovieProps) => <AddToMustWatchIcon {...movie} />}  {...AddToMustWatchIcon}
+        action={(movie: BaseMovieProps) => <AddToMustWatchIcon {...movie} />}
       />
       <MovieFilterUI
         onFilterValuesChange={changeFilterValues}
