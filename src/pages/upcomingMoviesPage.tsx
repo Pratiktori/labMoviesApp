@@ -6,7 +6,7 @@ import MovieFilterUI, { titleFilter, genreFilter } from "../components/movieFilt
 import { BaseMovieProps, DiscoverMovies } from "../types/interfaces";
 import { useQuery } from "react-query";
 import Spinner from "../components/spinner";
-import AddToFavouritesIcon from "../components/cardIcons/addToFavourites";
+import AddToMustWatchIcon from "../components/cardIcons/addToMustWatchIcon";  // <-- Import new icon
 
 const titleFiltering = {
   name: "title",
@@ -55,7 +55,7 @@ const UpcomingMoviesPage: React.FC = () => {
       <PageTemplate
         title="Upcoming Movies"
         movies={displayedMovies}
-        action={(movie: BaseMovieProps) => <AddToFavouritesIcon {...movie} />}
+        action={(movie: BaseMovieProps) => <AddToMustWatchIcon {...movie} />}  {...AddToMustWatchIcon}
       />
       <MovieFilterUI
         onFilterValuesChange={changeFilterValues}
