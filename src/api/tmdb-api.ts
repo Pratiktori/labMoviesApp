@@ -118,9 +118,36 @@ export const getMovie = (id: string) => {
       });
   };
 
-  export const getSimilarMovies = (id: string | number) => {
+  export const getActorsImages = (id: string | number) => {
     return fetch(
-      `https://api.themoviedb.org/3/movie/${id}/similar?api_key=${import.meta.env.VITE_TMDB_KEY}`
+      `https://api.themoviedb.org/3/person/${id}/images?api_key=${import.meta.env.VITE_TMDB_KEY}`
+    ).then((response) => {
+      if (!response.ok) {
+        throw new Error("failed to fetch images");
+      }
+      return response.json();
+    }).then((json) => json.posters)
+      .catch((error) => {
+        throw error
+      });
+  };
+
+  export const getActors = () => {
+    return fetch(
+      `https://api.themoviedb.org/3/person/popular?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&page=1`
+    ).then((response) => {
+      if (!response.ok)
+        throw new Error(`Unable to fetch movies. Response status: ${response.status}`);
+      return response.json();
+    })
+      .catch((error) => {
+        throw error
+      });
+  };
+
+  export const getActorDetails = (id: string | number) => {
+    return fetch(
+      `https://api.themoviedb.org/3/person/${id}?api_key=${import.meta.env.VITE_TMDB_KEY}`
     )
     .then((response) => {
       if (!response.ok)

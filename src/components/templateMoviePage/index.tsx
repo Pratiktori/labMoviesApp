@@ -18,6 +18,7 @@ const styles = {
         width: 450,
         height: '100vh',
     },
+    
 };
 
 interface TemplateMoviePageProps {

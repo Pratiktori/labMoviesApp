@@ -13,9 +13,8 @@ import MoviesContextProvider from "./contexts/moviesContext";
 import AddMovieReviewPage from './pages/addMovieReviewPage';
 import SeriesPage from "./pages/seriesPage";
 import SeriesDetailsPage from "./pages/seriesDetailsPage";
-
-
-
+import ActorsPage from "./pages/actorsPage";
+import ActorsDetailsPage from "./pages/actorsDetailsPage";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -40,6 +39,8 @@ const App = () => {
         <Route path="/movies/:id" element={<MoviePage />} />
         <Route path="/series" element={<SeriesPage/>} />
         <Route path="/series/:id" element={<SeriesDetailsPage/>} />
+        <Route path="/actors" element={<ActorsPage/>} />
+        <Route path="/actors/:id" element={<ActorsDetailsPage/>} />
         <Route path="/" element={<HomePage />} />
         <Route path="*" element={<Navigate to="/" />} />
         </Routes>
