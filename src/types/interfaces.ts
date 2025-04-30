@@ -187,7 +187,7 @@ export interface BaseMovieProps {
     export interface BaseActorsList{
       actors:BaseActors[];
     }
-    interface DiscoverActors {
+    export interface DiscoverActors {
       page: number;	
       total_pages: number;
       total_results: number;
