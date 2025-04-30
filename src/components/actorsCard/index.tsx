@@ -17,7 +17,7 @@ import React from "react";
  
  const styles = {
    card: { maxWidth: 345 },
-   media: { height: 500 },
+   media: { height: 400 },
    avatar: {
      backgroundColor: "rgb(255, 0, 0)",
    },
@@ -37,12 +37,12 @@ import React from "react";
        />
        <CardContent>
          <Grid container>
-           <Grid item xs={6}>
+           {/* <Grid item xs={6}>
              <Typography variant="h6" component="p">
                <CalendarIcon fontSize="small" />
-               {props.birthday}
+               {props.also_known_as}
              </Typography>
-           </Grid>
+           </Grid> */}
            <Grid item xs={6}>
              <Typography variant="h6" component="p">
                <StarRateIcon fontSize="small" />

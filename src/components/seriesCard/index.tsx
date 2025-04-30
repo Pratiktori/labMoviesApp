@@ -17,7 +17,7 @@ import { Link } from "react-router-dom";
 
 const styles = {
   card: { maxWidth: 345 },
-  media: { height: 500 },
+  media: { height: 400 },
   avatar: {
     backgroundColor: "rgb(255, 0, 0)",
   },

@@ -11,6 +11,7 @@ import Menu from "@mui/material/Menu";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { last } from "lodash";
 
 const styles = {
     title: {
@@ -32,7 +33,7 @@ const SiteHeader: React.FC = () => {
     { label: "Favorites", path: "/movies/favourites" },
     { label: "Upcoming movies", path: "/movies/upcoming"},
     { label: "TV Series", path: "/series" },
-    { label: "Actors", path: "/actors" },
+    { label: "Actors", path: "/actors"}
   ];
 
   const handleMenuSelect = (pageURL: string) => {
@@ -48,7 +49,7 @@ const SiteHeader: React.FC = () => {
       <AppBar position="fixed" elevation={0} color="primary">
         <Toolbar>
           <Typography variant="h4" sx={styles.title}>
-            TMDB Client
+            TMDB 
           </Typography>
           <Typography variant="h6" sx={styles.title}>
             All you ever wanted to know about Movies!
