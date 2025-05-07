@@ -1,22 +1,18 @@
-import React,{ReactNode} from "react";
-import MovieHeader from "../headerMovie";
+import React from "react";
 import Grid from "@mui/material/Grid";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
-import { getMovieImages } from "../../api/tmdb-api";
-import { MovieImage, MovieDetailsProps } from "../../types/interfaces";
+import { getSeriesImages } from "../../api/tmdb-api";
+import { SeriesImage, SeriesDetailsProps } from "../../types/interfaces";
 import { useQuery } from "react-query";
 import Spinner from '../spinner';
+import SeriesHeader from "../headerSeries";
 
 const styles = {
     gridListRoot: {
         display: "flex",
         flexWrap: "wrap",
         justifyContent: "space-around",
-    },
-    scrollableContainer: {
-        height: '80vh', 
-        overflow: 'auto',
     },
     gridListTile: {
         width: 300,
@@ -25,16 +21,16 @@ const styles = {
     
 };
 
-interface TemplateMoviePageProps {
-    movie: MovieDetailsProps;
-    children: ReactNode;
+interface TemplateseriesPageProps {
+    series: SeriesDetailsProps;
+    children: React.ReactElement;
 }
 
 
-const TemplateMoviePage: React.FC<TemplateMoviePageProps> = ({movie, children}) => {
-    const { data, error, isLoading, isError } = useQuery<MovieImage[], Error>(
-        ["images", movie.id],
-        () => getMovieImages(movie.id)
+const TemplateseriesPage: React.FC<TemplateseriesPageProps> = ({series, children}) => {
+    const { data, error, isLoading, isError } = useQuery<SeriesImage[], Error>(
+        ["images", series.id],
+        () => getSeriesImages(series.id)
     );
 
     if (isLoading) {
@@ -42,20 +38,22 @@ const TemplateMoviePage: React.FC<TemplateMoviePageProps> = ({movie, children}) 
     }
 
     if (isError) {
-        return <h1>{error.message}</h1>;
+        return <h1>{(error
+
+        ).message}</h1>;
     }
 
-    const images = data as MovieImage[];
+    const images = data as SeriesImage[];
 
     return (
         <>
-            <MovieHeader {...movie} />
+            <SeriesHeader {...series} />
 
             <Grid container spacing={5} style={{ padding: "15px" }}>
                 <Grid item xs={3}>
-                <div style={styles.scrollableContainer}>
+                    <div>
                         <ImageList cols={1}>
-                            {images.map((image: MovieImage) => (
+                            {images.map((image: SeriesImage) => (
                                 <ImageListItem
                                     key={image.file_path}
                                     sx={styles.gridListTile}
@@ -79,4 +77,4 @@ const TemplateMoviePage: React.FC<TemplateMoviePageProps> = ({movie, children}) 
     );
 };
 
-export default TemplateMoviePage;
+export default TemplateseriesPage;

@@ -1,10 +1,10 @@
 import React from "react";
  import Header from "../components/headerMovieList";
  import Grid from "@mui/material/Grid";
- import { BaseSeries, DiscoverSeries } from "../types/interfaces";
+ import { BaseSeries, DiscoverSeries, BaseTVSeries } from "../types/interfaces";
  import SeriesList from "../components/seriesList";
  import { useQuery } from "react-query";
- import { getSeries } from "../api/tmdb-api";
+ import { getSeriees, getSeries } from "../api/tmdb-api";
  import Spinner from "../components/spinner";
  import useFiltering from "../hooks/useFiltering";
  import MovieFilterUI, { titleFilter, genreFilter } from "../components/movieFilterUI";
@@ -28,7 +28,7 @@ import AddToMustWatchIcon from "../components/cardIcons/addToMustWatchIcon";
  };
  
  const SeriesPage: React.FC = () => {
-   const { data, error, isLoading, isError } = useQuery<DiscoverSeries, Error>("discoverseries", getSeries);
+   const { data, error, isLoading, isError } = useQuery<DiscoverSeries, Error>("discoverseries", getSeriees);
     
    const { filterValues, setFilterValues, filterFunction } = useFiltering([
     titleFiltering,
@@ -60,7 +60,9 @@ import AddToMustWatchIcon from "../components/cardIcons/addToMustWatchIcon";
                <Header title={"Discover TV Series"} />
            </Grid>
            <Grid item container spacing={5}>
-               <SeriesList series={series} />
+               <SeriesList series={series} shows={[]} action={function (m: BaseTVSeries): React.ReactNode {
+                   throw new Error("Function not implemented.");
+               } } />
            </Grid>
        </Grid><MovieFilterUI
                onFilterValuesChange={changeFilterValues}

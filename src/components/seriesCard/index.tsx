@@ -23,6 +23,7 @@ const styles = {
   },
 };
 
+
 const SeriesCard: React.FC<BaseSeries> = (props) => {
 
     const series ={...props};

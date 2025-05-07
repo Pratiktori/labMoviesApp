@@ -10,6 +10,19 @@ export const getMovies = () => {
       throw error
     });
 };
+
+export const getSeriees = () => {
+  return fetch(
+    `https://api.themoviedb.org/3/discover/tv?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=1`
+  ).then((response) => {
+    if (!response.ok)
+      throw new Error(`Unable to fetch movies. Response status: ${response.status}`);
+    return response.json();
+  })
+    .catch((error) => {
+      throw error
+    });
+};
   
 export const getMovie = (id: string) => {
   return fetch(
@@ -76,7 +89,7 @@ export const getMovie = (id: string) => {
       });
   };
 
-  export const getSeries = () => {
+  export const getSeries = (p0: string) => {
     return fetch(
       `https://api.themoviedb.org/3/tv/airing_today?api_key=${import.meta.env.VITE_TMDB_KEY}`
     )
@@ -148,6 +161,20 @@ export const getMovie = (id: string) => {
   export const getActorDetails = (id: string | number) => {
     return fetch(
       `https://api.themoviedb.org/3/person/${id}?api_key=${import.meta.env.VITE_TMDB_KEY}`
+    )
+    .then((response) => {
+      if (!response.ok)
+        throw new Error(`Unable to fetch movies. Response status: ${response.status}`);
+      return response.json();
+    })
+      .catch((error) => {
+        throw error
+      });
+  };
+
+  export const getSimilarMovies = (id: string | number) => {
+    return fetch(
+      `https://api.themoviedb.org/3/movie/${id}/similar?api_key=${import.meta.env.VITE_TMDB_KEY}`
     )
     .then((response) => {
       if (!response.ok)

@@ -103,12 +103,29 @@ export interface BaseMovieProps {
     vote_count: number;
   }
 
+  export interface SeriesImage {
+    file_path: string;
+    aspect_ratio?: number; 
+    height?: number;
+    iso_639_1?: string;
+    vote_average?: number;
+    vote_count?: number;
+    width?: number;
+  }
   export interface SeriesDetailsProps extends BaseSeries {
     genres: {
         id: number;
         name: string;
     }[];
     production_countries: { name: string }[];
+}
+export interface BaseTVSeries extends BaseSeries {
+  genre_ids: number[];
+}
+export interface SeriesListPageTemplateProps {
+  shows: BaseTVSeries[];
+  title: string;
+  actionseries: (m: BaseTVSeries) => React.ReactNode;
 }
   export interface BaseSeriesList {
     series: BaseSeries[];
