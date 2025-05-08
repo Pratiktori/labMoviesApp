@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import Grid from "@mui/material/Grid";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
@@ -18,12 +18,15 @@ const styles = {
         width: 300,
         height: '100vh',
     },
-    
+    scrollableContainer: {
+        height: '80vh', 
+        overflow: 'auto',
+    },
 };
 
 interface TemplateseriesPageProps {
     series: SeriesDetailsProps;
-    children: React.ReactElement;
+    children: ReactNode;
 }
 
 
@@ -38,9 +41,7 @@ const TemplateseriesPage: React.FC<TemplateseriesPageProps> = ({series, children
     }
 
     if (isError) {
-        return <h1>{(error
-
-        ).message}</h1>;
+        return <h1>{error.message}</h1>;
     }
 
     const images = data as SeriesImage[];
@@ -51,7 +52,7 @@ const TemplateseriesPage: React.FC<TemplateseriesPageProps> = ({series, children
 
             <Grid container spacing={5} style={{ padding: "15px" }}>
                 <Grid item xs={3}>
-                    <div>
+                    <div style={styles.scrollableContainer}>
                         <ImageList cols={1}>
                             {images.map((image: SeriesImage) => (
                                 <ImageListItem

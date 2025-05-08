@@ -1,0 +1,75 @@
+import React from "react";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import CardHeader from "@mui/material/CardHeader";
+import CalendarIcon from "@mui/icons-material/CalendarTodayTwoTone";
+import StarRateIcon from "@mui/icons-material/StarRate";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import { BaseSeriesList } from "../../types/interfaces";  // Adjust import path if needed
+import img from '../../images/film-poster-placeholder.png';
+
+const styles = {
+  scrollableContainer: {
+    height: '80vh',
+    overflow: 'auto',
+  },
+};
+
+const SimilarSeries: React.FC<BaseSeriesList> = ({ series }) => {
+  const renderSeries = () => {
+    return series.map((show, index) => (
+      <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
+        <Card sx={{ maxWidth: 245 }}>
+          <CardHeader
+            title={
+              <Typography variant="h5" component="p">
+                {show.name}{" "}
+              </Typography>
+            }
+          />
+          <CardMedia
+            sx={{ height: 300 }}
+            image={
+              show.poster_path
+                ? `https://image.tmdb.org/t/p/w500/${show.poster_path}`
+                : img
+            }
+          />
+          <CardContent>
+            <Grid container>
+              <Grid item xs={6}>
+                <Typography variant="h6" component="p">
+                  <CalendarIcon fontSize="small" />
+                  {show.first_air_date}
+                </Typography>
+              </Grid>
+              <Grid item xs={6}>
+                <Typography variant="h6" component="p">
+                  <StarRateIcon fontSize="small" />
+                  {"  "} {show.vote_average}{" "}
+                </Typography>
+              </Grid>
+            </Grid>
+          </CardContent>
+        </Card>
+      </Grid>
+    ));
+  };
+
+  return (
+    <>
+      <Typography variant="h5" component="h3" style={{ marginTop: "50px" }}>
+        Similar Series
+      </Typography>
+      <div style={styles.scrollableContainer}>
+        <Grid container spacing={2}>
+          {renderSeries()}
+        </Grid>
+      </div>
+    </>
+  );
+};
+
+export default SimilarSeries;

@@ -151,6 +151,13 @@ export interface SeriesListPageTemplateProps {
     results: BaseMovieProps[];
   }
 
+  
+  export interface SimilarS {
+    page: number;	
+    total_pages: number;
+    total_results: number;
+    results: BaseSeries[];
+  }
   export interface Cast{
     adult: boolean
     gender: number
