@@ -3,18 +3,17 @@ import { useParams } from "react-router-dom";
 import SeriesDetails from "../components/seriesDetails";
 import PageTemplate from "../components/templateSeriesPage";
 // import useMovie from "../hooks/useMovie";
-import { getSeries } from '../api/tmdb-api'
+import { getSeries, getSeriesDetails } from '../api/tmdb-api'
 import { useQuery } from "react-query";
 import Spinner from '../components/spinner';
-import { SeriesDetailsProps } from "../types/interfaces";
+import { BaseSeries, SeriesDetailsProps, } from "../types/interfaces";
 
 const SeriesDetailsPage: React.FC= () => {
   const { id } = useParams();
   const { data: shows, error, isLoading, isError } = useQuery<SeriesDetailsProps, Error>(
-    ["movie", id],
-    ()=> getSeries(id||"")
+    ["series", id],
+    () => getSeriesDetails(id || "")
   );
-
   if (isLoading) {
     return <Spinner />;
   }

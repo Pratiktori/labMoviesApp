@@ -89,7 +89,7 @@ export const getMovie = (id: string) => {
       });
   };
 
-  export const getSeries = (p0: string) => {
+  export const getSeries = () => {
     return fetch(
       `https://api.themoviedb.org/3/tv/airing_today?api_key=${import.meta.env.VITE_TMDB_KEY}`
     )

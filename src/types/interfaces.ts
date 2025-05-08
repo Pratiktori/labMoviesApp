@@ -137,7 +137,7 @@ export interface SeriesListPageTemplateProps {
     results: BaseSeries[];
   }
 
-  interface TvSeries {
+  export interface TvSeries {
     page: number;	
     total_pages: number;
     total_results: number;
