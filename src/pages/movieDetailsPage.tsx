@@ -1,4 +1,4 @@
-import React,{useEffect} from "react"; // replace existing react import
+import React from "react"; // replace existing react import
 import { useParams } from "react-router-dom";
 import MovieDetails from "../components/movieDetails";
 import PageTemplate from "../components/templateMoviePage";
@@ -6,7 +6,7 @@ import PageTemplate from "../components/templateMoviePage";
 import { getMovie, getSimilarMovies } from '../api/tmdb-api'
 import { useQuery } from "react-query";
 import Spinner from '../components/spinner';
-import { BaseMovieProps, MovieDetailsProps, Similar } from "../types/interfaces";
+import { MovieDetailsProps, Similar } from "../types/interfaces";
 import SimilarMovies from "../components/similarMovies";
 
 const MovieDetailsPage: React.FC= () => {
@@ -15,7 +15,7 @@ const MovieDetailsPage: React.FC= () => {
     ["movie", id],
     ()=> getMovie(id||"")
   );
-  const { data: similarMovies, error: similarMoviesError, isLoading: similarMoviesLoading, isError: similarMoviesIsError } = useQuery<Similar, Error>(
+  const { data: similarMovies, isLoading: similarMoviesLoading } = useQuery<Similar, Error>(
     ["similarMovies", id],
     () => getSimilarMovies(id || "")
   );
@@ -34,7 +34,7 @@ const MovieDetailsPage: React.FC= () => {
         <>
         <PageTemplate movie={movie}> 
           <MovieDetails {...movie} />
-          <SimilarMovies movies={similarMovies?.results || []} action={function (m: BaseMovieProps): React.ReactNode {
+          <SimilarMovies movies={similarMovies?.results || []} action={function (): React.ReactNode {
               throw new Error("Function not implemented.");
             } } />
         </PageTemplate>

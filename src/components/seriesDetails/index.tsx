@@ -7,7 +7,6 @@ import React from "react";
  import { useQuery } from "react-query";
  import { getSeriesImages } from "../../api/tmdb-api";
  import Spinner from "../spinner";
- import MovieHeader from "../headerMovie";
  
  const styles = {
      gridListRoot: {

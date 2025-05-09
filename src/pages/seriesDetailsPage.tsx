@@ -16,7 +16,7 @@ const SeriesDetailsPage: React.FC = () => {
     () => getSeriesDetails(id || "")
   );
 
-  const { data: similarSeries, error: similarSeriesError, isLoading: similarSeriesLoading, isError: similarSeriesIsError } = useQuery<SimilarS, Error>(
+  const { data: similarSeries, isLoading: similarSeriesLoading } = useQuery<SimilarS, Error>(
     ["similarSeries", id],
     () => getSimilarSeries(id || "")
   );
