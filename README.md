@@ -72,15 +72,6 @@
 - *Responsive UI:* Designed to be mobile-friendly and adaptable across screen sizes.
 
 
-## Future Improvements
-
-- User authentication and profiles
-- Ratings and watchlists
-- Dark mode
-- Backend integration for persistent reviews
-- Lazy loading and performance optimization
-
-
 ### Installation
 
 bash
